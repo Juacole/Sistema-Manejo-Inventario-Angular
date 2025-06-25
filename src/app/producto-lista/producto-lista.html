@@ -11,18 +11,14 @@
                 <th class="p-3 text-sm font-semibold tracking-wide">Existencias</th>
             </thead>
             <tbody>
+                @for(producto of productos; track producto.idProducto){
                 <tr class="border-b-1 border-gray-400">
-                    <td class="p-3 text-sm font-semibold">1</td>
-                    <td class="p-3 text-sm font-semibold">2</td>
-                    <td class="p-3 text-sm font-semibold">3</td>
-                    <td class="p-3 text-sm font-semibold">4</td>
+                    <td class="p-3 text-sm font-semibold">{{producto.idProducto}}</td>
+                    <td class="p-3 text-sm font-semibold">{{producto.descripcion}}</td>
+                    <td class="p-3 text-sm font-semibold">{{producto.precio}}</td>
+                    <td class="p-3 text-sm font-semibold">{{producto.existencias}}</td>
                 </tr>
-                <tr class="border-b-1 border-gray-400">
-                    <td class="p-3 text-sm font-semibold">1</td>
-                    <td class="p-3 text-sm font-semibold">2</td>
-                    <td class="p-3 text-sm font-semibold">3</td>
-                    <td class="p-3 text-sm font-semibold">4</td>
-                </tr>
+                }
             </tbody>
         </table>
     </div>
