@@ -15,4 +15,23 @@ export class AgregarProducto {
 
   private productoServicio = inject(ProductoService);
   private enrutador = inject(Router);
+
+  onSubmit() {
+    this.guardarProducto();
+  }
+
+  guardarProducto() {
+    this.productoServicio.agregarProducto(this.producto).subscribe({
+      next: (datos) => {
+        this.irListaProductos();
+      },
+      error: (error) => {
+        console.error('Error al agregar el producto:', error);
+      }
+    })
+  }
+
+  irListaProductos() {
+    this.enrutador.navigate(['/productos']);
+  }
 }
