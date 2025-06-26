@@ -12,7 +12,11 @@ export class ProductoService {
   private clienteHttp = inject(HttpClient);
 
   obtenerProductosLista(): Observable<Producto[]> {
-    return this.clienteHttp.get <Producto[]>(this.urlBase);
+    return this.clienteHttp.get<Producto[]>(this.urlBase);
+  }
+
+  agregarProducto(producto: Producto): Observable<Object> {
+    return this.clienteHttp.post(this.urlBase, producto);
   }
 
 }
