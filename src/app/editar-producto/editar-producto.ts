@@ -1,8 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { Producto } from '../producto.model';
 import { ProductoService } from '../producto.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-editar-producto',
@@ -16,6 +17,7 @@ export class EditarProducto {
 
   private productoServicio = inject(ProductoService);
   private ruta = inject(ActivatedRoute);
+  private enrutador = inject(Router);
 
   ngOnInit() {
     this.id = this.ruta.snapshot.params['id'];
@@ -29,6 +31,22 @@ export class EditarProducto {
     });
   }
 
+  onSubmit() {
+    this.guardarProducto();
+  }
 
+  private guardarProducto() {
+    this.productoServicio.editarProducto(this.id, this.producto).subscribe({
+      next: (data) => {
+        this.irProductoLista();
+      },
+      error: (error: any) => {
+        console.error('Error al actualizar el producto:', error);
+      }
+    });
+  }
 
+  private irProductoLista() {
+    this.enrutador.navigate(['/productos']);
+  }
 }
